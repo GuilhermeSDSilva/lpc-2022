@@ -6,7 +6,7 @@
 
 import turtle
 import os
-# efeito de colisão
+# som de colisão
 import pygame
 pygame.init()
 pygame.mixer.music.load('collision.mp3')

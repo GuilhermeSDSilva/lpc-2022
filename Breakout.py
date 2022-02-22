@@ -20,8 +20,6 @@ def inicio():
     ball_x = 350
     ball_y = 670
 
-    
-
     cor = ["abc", "yellow", "blue", "green", "orange", "red"]
 
     # movimentos da bola
@@ -34,11 +32,10 @@ def inicio():
     d = para_direita
     c = para_cima
 
-
     # velocidades das direções da bola
     velocidadex = random.uniform(0.6, 1.2)
     velocidadey = 1
-    
+
     # texto de pontução
     score_font = pygame.font.Font('assets/PressStart2P.ttf', 44)
     score_text = score_font.render('00 x 00', True, "white", "black")
@@ -59,7 +56,8 @@ def inicio():
 
     # texto retomar
     return_font = pygame.font.Font('assets/PressStart2P.ttf', 15)
-    return_text = return_font .render('Pressione z para Retornar', True, "white", "black")
+    return_text = return_font .render('Pressione z para Retornar',
+                                      True, "white", "black")
     return_text_rect = score_text.get_rect()
     return_text_rect.center = (350, 350)
 
@@ -81,7 +79,7 @@ def inicio():
     x13 = 0
     x14 = 0
     x15 = 0
-    
+
     while True:
         tela.fill("black")
         for event in pygame.event.get():
@@ -103,7 +101,7 @@ def inicio():
                 if event.key == pygame.K_a:
                     player_move_esquerda = False
 
-        if vitoria != 15:
+        if vitoria != 2:
 
             # blocos
             bloco4 = pygame.draw.rect(tela, "red", (50+x4, 10, 80, 10))
@@ -123,7 +121,8 @@ def inicio():
             bloco15 = pygame.draw.rect(tela, "yellow", (450+x15, 90, 80, 10))
 
             # desenhar raquete
-            player = pygame.draw.rect(tela, "red", (player_x, player_y, 70, 10))
+            player = pygame.draw.rect(tela, "red",
+                                      (player_x, player_y, 70, 10))
 
             # dsenhar bola
             ball = pygame.draw.rect(tela, "blue", (ball_x, ball_y, 20, 20))
@@ -135,15 +134,15 @@ def inicio():
             wall_left = pygame.draw.rect(tela, "green", (0, 0, 10, 700))
 
             # Direão da bola direita e esquerda
-            if para_direita == True:
+            if para_direita is True:
                 ball_x += velocidadex
-            elif para_direita == False:
+            elif para_direita is not True:
                 ball_x -= velocidadex
 
             # Direão da bola cima e baixo
-            if para_cima == True:
+            if para_cima is True:
                 ball_y -= velocidadey
-            elif para_cima == False:
+            elif para_cima is not True:
                 ball_y += velocidadey
 
             # colisão com a parede direita e esquerda
@@ -164,11 +163,11 @@ def inicio():
                 velocidadey += 0.01
 
             # movimento da raquete
-            if player_move_direita == True:
+            if player_move_direita is True:
                 player_x += 1
             else:
                 player_x += 0
-            if player_move_esquerda == True:
+            if player_move_esquerda is True:
                 player_x -= 1
             else:
                 player_x -= 0
@@ -251,16 +250,13 @@ def inicio():
                 pygame.mixer.music.play()
 
         else:
-            # desenhar vitoria
-            tela.fill("black")
-
             tela.blit(victory_text, victory_text_rect)
-            pygame.time.wait(10)
 
         if ball_y > 700:
             # desenhar derrota
             tela.fill("black")
             tela.blit(return_text, return_text_rect)
+
         pygame.display.update()
         pygame.display.flip()
 inicio()
